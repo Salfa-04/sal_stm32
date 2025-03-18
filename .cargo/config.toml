@@ -1,0 +1,38 @@
+[env]
+CARGO_REGISTRY_DEFAULT = "rsproxy"
+
+# LOG: trace, debug, info, warn, error
+DEFMT_LOG             = "info"
+DEFMT_RTT_BUFFER_SIZE = "1024"
+
+PROBE_RS_CHIP     = "STM32F103C8"
+PROBE_RS_PROTOCOL = "swd"
+
+[alias]
+rr = "run --release"
+br = "build --release"
+
+
+[build]
+target = "thumbv7m-none-eabi"
+rustflags = [
+    "-Clinker-plugin-lto",
+    # "-Clinker-flavor=rust-lld",
+    "-Clink-arg=-Tlink.x",
+    "-Clink-arg=--nmagic",
+    "-Clink-arg=-Tdefmt.x",
+    "-Cforce-frame-pointers",
+    # "-Zmacro-backtrace",
+]
+
+[target.thumbv7m-none-eabi]
+# linker = "rust-lld"
+runner = [
+    "probe-rs",
+    "run",
+    "--preverify",
+    "--verify",
+    # "--connect-under-reset",
+    # "--log-format",
+    # "{L} {s}",
+]
