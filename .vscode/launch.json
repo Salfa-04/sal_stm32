@@ -33,7 +33,7 @@
             "servertype": "openocd",
             "runToEntryPoint": "main",
             "showDevDebugOutput": "parsed",
-            "rtos": "auto",
+            // "rtos": "auto",
             "interface": "swd",
             "executable": "target/thumbv7m-none-eabi/debug/sal_stm32",
             "svdPath": "Keil::STM32F1xx_DFP@2.4.1",
@@ -41,10 +41,21 @@
             "configFiles": [
                 "${workspaceRoot}/openocd.cfg"
             ],
+            // "rttConfig": {
+            //     "enabled": true,
+            //     "address": "auto",
+            //     "decoders": [
+            //         {
+            //             "label": "",
+            //             "port": 0,
+            //             "type": "console"
+            //         }
+            //     ]
+            // },
             "liveWatch": {
                 "enabled": true,
                 "samplesPerSecond": 4
-            }
+            },
         },
     ]
 }

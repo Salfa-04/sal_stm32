@@ -9,20 +9,19 @@ autotests    = false
 publish      = false
 
 
-[dependencies.embassy-stm32]
-version  = "0.2"
-features = ["memory-x", "stm32f103c8", "time-driver-tim3"]
-
-
 [dependencies]
-defmt     = "0.3"
-defmt-rtt = "0.4"
-toml-cfg  = "0.2"
+
+
+defmt        = "0.3"
+defmt-rtt    = "0.4"
+toml-cfg     = "0.2"
+static_cell  = "2.1"
+embassy-sync = "0.6"
 
 panic-probe  = { version = "0.3", features = ["print-defmt"] }
 cortex-m-rt  = { version = "0.7", features = ["device"] }
-embassy-time = { version = "0.4", features = ["tick-hz-72_000_000"] }
-# embassy-time = { version = "0.4", features = [] }
+embassy-time = { version = "0.4", features = ["tick-hz-32_768"] }
+
 
 [dependencies.cortex-m]
 version  = "0.7"
@@ -30,6 +29,9 @@ features = ["critical-section-single-core", "linker-plugin-lto"]
 [dependencies.embassy-executor]
 version  = "0.7"
 features = ["arch-cortex-m", "executor-thread", "task-arena-size-1024"]
+[dependencies.embassy-stm32]
+version  = "0.2"
+features = ["defmt", "memory-x", "time-driver-any", "stm32f103c8"]
 
 
 [profile]

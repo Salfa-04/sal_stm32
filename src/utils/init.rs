@@ -15,13 +15,13 @@ pub fn sys_init() -> (embassy_stm32::Peripherals,) {
             mode: rcc::HseMode::Oscillator,
         });
 
-        rcc.sys = rcc::Sysclk::PLL1_P;
         rcc.pll = Some(rcc::Pll {
-            src: rcc::PllSource::HSE,
-            prediv: rcc::PllPreDiv::DIV1,
-            mul: rcc::PllMul::MUL9,
+            src: rcc::PllSource::HSE,     // 8MHz
+            prediv: rcc::PllPreDiv::DIV1, // 8MHz
+            mul: rcc::PllMul::MUL9,       // 72MHz
         });
 
+        rcc.sys = rcc::Sysclk::PLL1_P;
         rcc.ahb_pre = rcc::AHBPrescaler::DIV1;
         rcc.apb1_pre = rcc::APBPrescaler::DIV2;
         rcc.apb2_pre = rcc::APBPrescaler::DIV1;
@@ -29,10 +29,10 @@ pub fn sys_init() -> (embassy_stm32::Peripherals,) {
         rcc.mux = rcc::mux::ClockMux::default();
         rcc.ls = rcc::LsConfig::default_lse();
 
-        init(config)
+        init(config) // 72MHz
     };
 
-    ::defmt::info!("Init: Peripherals!");
+    defmt::info!("Init: Peripherals!");
 
     (peripherals,)
 }

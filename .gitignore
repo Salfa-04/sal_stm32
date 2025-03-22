@@ -1,5 +1,6 @@
 # Files
 /Cargo.lock
+/cfg.toml
 
 # Directories
 /target/

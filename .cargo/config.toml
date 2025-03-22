@@ -2,7 +2,7 @@
 CARGO_REGISTRY_DEFAULT = "rsproxy"
 
 # LOG: trace, debug, info, warn, error
-DEFMT_LOG             = "info"
+DEFMT_LOG             = "trace"
 DEFMT_RTT_BUFFER_SIZE = "1024"
 
 PROBE_RS_CHIP     = "STM32F103C8"
