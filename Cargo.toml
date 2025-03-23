@@ -10,13 +10,15 @@ publish      = false
 
 
 [dependencies]
+pid = "4.0"
 
 
 defmt        = "0.3"
 defmt-rtt    = "0.4"
 toml-cfg     = "0.2"
-static_cell  = "2.1"
 embassy-sync = "0.6"
+
+embedded-io = { version = "0.6", features = ["defmt-03"] }
 
 panic-probe  = { version = "0.3", features = ["print-defmt"] }
 cortex-m-rt  = { version = "0.7", features = ["device"] }

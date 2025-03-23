@@ -40,6 +40,12 @@ pub async fn gps_task(p: (USART3, PB11, DMA1_CH3)) -> ! {
     //     "all-sentences",
     // ], default-features = false }
 
+    // {
+    //     // !TASK: gps_task
+    //     let p = (p.USART3, p.PB11, p.DMA1_CH3);
+    //     s.must_spawn(tasks::gps_task(p));
+    // }
+
     loop {
         match rx.read_until_idle(&mut buffer).await {
             Ok(x) => {

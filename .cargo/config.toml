@@ -17,11 +17,10 @@ br = "build --release"
 target = "thumbv7m-none-eabi"
 rustflags = [
     "-Clinker-plugin-lto",
-    # "-Clinker-flavor=rust-lld",
     "-Clink-arg=-Tlink.x",
     "-Clink-arg=--nmagic",
     "-Clink-arg=-Tdefmt.x",
-    "-Cforce-frame-pointers",
+    # "-Cforce-frame-pointers",
     # "-Zmacro-backtrace",
 ]
 
@@ -31,7 +30,8 @@ runner = [
     "probe-rs",
     "run",
     "--preverify",
-    "--verify",
+    "--no-location",
+    # "--verify",
     # "--connect-under-reset",
     # "--log-format",
     # "{L} {s}",

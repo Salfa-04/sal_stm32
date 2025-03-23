@@ -17,34 +17,26 @@ async fn entry(s: embassy_executor::Spawner) {
         s.must_spawn(tasks::led_task(p));
     }
 
-    // {
-    //     // !TASK: gps_task
-    //     let p = (p.USART3, p.PB11, p.DMA1_CH3);
-    //     s.must_spawn(tasks::gps_task(p));
-    // }
-
-    // {
-    //     // !TASK: uart_task
-    //     let p = (p.USART1, p.PA10, p.PA9, p.DMA1_CH4, p.DMA1_CH5);
-    //     s.must_spawn(tasks::uart_task(s.make_send(), p));
-    // }
-
     {
         // !TASK: pwm_task
-        let p = (p.TIM3, p.PA6, p.PA7);
+        let p = (p.TIM3, p.PA6, p.PA7, p.PB0, p.PB1);
         s.must_spawn(tasks::pwm_task(p));
     }
 
-    {
-        let mut t = init_ticker!(1000);
+    // {
+    //     use pid::Pid;
 
-        let x = 0;
-        let y = 0;
+    //     let mut a: Pid<f32> = Pid::new(0f32, 90f32);
+    //     a.kp = 0.5;
+    //     a.ki = 0.1;
+    //     a.kd = 0.1;
 
-        loop {
-            tasks::pwm_set_duty_cycle(x, y).await;
+    //     a.p_limit;
+    // }
 
-            t.next().await;
-        }
-    }
+    // {
+    //     // !TASK: dbg_task
+    //     let p = (p.USART1, p.PA10, p.PA9, p.DMA1_CH4, p.DMA1_CH5);
+    //     s.must_spawn(tasks::dbg_task(p));
+    // }
 }

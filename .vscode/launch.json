@@ -41,17 +41,6 @@
             "configFiles": [
                 "${workspaceRoot}/openocd.cfg"
             ],
-            // "rttConfig": {
-            //     "enabled": true,
-            //     "address": "auto",
-            //     "decoders": [
-            //         {
-            //             "label": "",
-            //             "port": 0,
-            //             "type": "console"
-            //         }
-            //     ]
-            // },
             "liveWatch": {
                 "enabled": true,
                 "samplesPerSecond": 4
