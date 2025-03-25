@@ -6,7 +6,7 @@
             "request": "launch",
             "name": "Probe-rs Debug",
             "cwd": "${workspaceFolder}",
-            "chip": "STM32F103C8",
+            "chip": "STM32F401RC",
             "flashingConfig": {
                 "flashingEnabled": true,
                 "haltAfterReset": false,
@@ -36,8 +36,8 @@
             // "rtos": "auto",
             "interface": "swd",
             "executable": "target/thumbv7m-none-eabi/debug/sal_stm32",
-            "svdPath": "Keil::STM32F1xx_DFP@2.4.1",
-            "deviceName": "STM32F103C8",
+            "svdPath": "Keil::STM32F4xx_DFP@3.0.0",
+            "deviceName": "STM32F401RC",
             "configFiles": [
                 "${workspaceRoot}/openocd.cfg"
             ],

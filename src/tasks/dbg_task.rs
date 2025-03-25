@@ -5,7 +5,7 @@
 use crate::hal::{mode::Async, peripherals, usart};
 use defmt::{error, info};
 use embassy_sync::{blocking_mutex::raw, mutex};
-use peripherals::{DMA1_CH4, DMA1_CH5, PA9, PA10, USART1};
+use peripherals::{DMA2_CH2, DMA2_CH7, PA9, PA10, USART1};
 use usart::{Config, Uart, UartTx};
 use {mutex::Mutex as M, raw::ThreadModeRawMutex as RM};
 
@@ -19,7 +19,7 @@ pub static DBG_TX: M<RM, Option<UartTx<Async>>> = M::new(None);
 macro_rules! uprintln {
     ($($arg:tt)*) => {
         use embedded_io::Write as  _;
-        let mut tx = $crate::tasks::DBG_TX.lock().await;
+        let mut tx = $crate::tasks::dbg_task::DBG_TX.lock().await;
         if let Some(tx) = tx.as_mut() {
             if let Err(e) = writeln!(tx, $($arg)*) {
                 ::defmt::error!("Debug Tx Error: {:?}", e);
@@ -31,7 +31,7 @@ macro_rules! uprintln {
 }
 
 #[super::task]
-pub async fn dbg_task(p: (USART1, PA10, PA9, DMA1_CH4, DMA1_CH5)) {
+pub async fn dbg_task(p: (USART1, PA10, PA9, DMA2_CH7, DMA2_CH2)) {
     let mut config = Config::default();
     config.baudrate = 115200;
 

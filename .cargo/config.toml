@@ -5,8 +5,9 @@ CARGO_REGISTRY_DEFAULT = "rsproxy"
 DEFMT_LOG             = "trace"
 DEFMT_RTT_BUFFER_SIZE = "1024"
 
-PROBE_RS_CHIP     = "STM32F103C8"
+PROBE_RS_CHIP     = "STM32F401RC"
 PROBE_RS_PROTOCOL = "swd"
+
 
 [alias]
 rr = "run --release"
@@ -14,7 +15,7 @@ br = "build --release"
 
 
 [build]
-target = "thumbv7m-none-eabi"
+target = "thumbv7em-none-eabihf"
 rustflags = [
     "-Clinker-plugin-lto",
     "-Clink-arg=-Tlink.x",
@@ -24,7 +25,7 @@ rustflags = [
     # "-Zmacro-backtrace",
 ]
 
-[target.thumbv7m-none-eabi]
+[target.thumbv7em-none-eabihf]
 # linker = "rust-lld"
 runner = [
     "probe-rs",

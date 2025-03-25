@@ -18,8 +18,7 @@ defmt-rtt    = "0.4"
 toml-cfg     = "0.2"
 embassy-sync = "0.6"
 
-embedded-io = { version = "0.6", features = ["defmt-03"] }
-
+embedded-io  = { version = "0.6", features = ["defmt-03"] }
 panic-probe  = { version = "0.3", features = ["print-defmt"] }
 cortex-m-rt  = { version = "0.7", features = ["device"] }
 embassy-time = { version = "0.4", features = ["tick-hz-32_768"] }
@@ -33,12 +32,15 @@ version  = "0.7"
 features = ["arch-cortex-m", "executor-thread", "task-arena-size-1024"]
 [dependencies.embassy-stm32]
 version  = "0.2"
-features = ["defmt", "memory-x", "time-driver-any", "stm32f103c8"]
+features = ["defmt", "memory-x", "time-driver-any", "stm32f401rc"]
 
 
 [profile]
-release.debug = true
-release.lto   = true
+release.codegen-units = 1
+dev.codegen-units     = 1
+release.debug         = true
+release.lto           = true
+# release.strip         = true
 
 [profile.dev.package]
 cortex-m.opt-level         = 3
